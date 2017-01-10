@@ -1,0 +1,5 @@
+name 'mac_defaults'
+maintainer 'Warachet Samtalee'
+maintainer_email 'zdkaster@gmail.com'
+description 'Mac Resources'
+version '0.1.0'
