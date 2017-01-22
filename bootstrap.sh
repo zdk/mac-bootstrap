@@ -23,19 +23,6 @@ else
   softwareupdate -i "$PROD" --verbose;
 fi
 
-# Set permissions
-cd ~
-mkdir -p tmp
-echo_warn "setting permissions..."
-for dir in "/usr/local /usr/local/bin /usr/local/include /usr/local/lib /usr/local/share"; do
-    sudo chgrp admin $dir
-    sudo chmod g+w $dir
-done
-
-# Install Homebrew
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-
-
 # homebrew
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
@@ -43,11 +30,13 @@ if hash brew &> /dev/null; then
     echo_ok "Homebrew already installed"
 else
     echo_warn "Installing homebrew..."
-    ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+    /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 fi
 
 # install brew-cask
 brew install caskroom/cask/brew-cask
+brew tap caskroom/versions;
+
 brew update
 
 # install chefDK

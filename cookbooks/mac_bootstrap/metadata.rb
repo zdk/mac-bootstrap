@@ -5,4 +5,4 @@ description 'Chef Cookbook to bootstrap Mac OS X as a sane default'
 
 version '0.1.0'
 
-depends 'mac_defaults'
+depends 'mac'

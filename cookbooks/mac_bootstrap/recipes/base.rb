@@ -2,14 +2,17 @@ user = node["user"]
 
 execute 'killall Finder' do
   action :nothing
+  ignore_failure true
 end
 
 execute 'killall SystemUIServer' do
   action :nothing
+  ignore_failure true
 end
 
 execute 'killall Dock' do
   action :nothing
+  ignore_failure true
 end
 
 mac_defaults 'Show all hidden files' do
@@ -110,3 +113,18 @@ mac_defaults 'Disable play feedback when volume is changed' do
   notifies :run, 'execute[killall SystemUIServer]'
 end
 
+settings = {
+	'com.apple.driver.AppleBluetoothMultitouch.trackpad/Clicking': true,
+	'NSGlobalDomain/com.apple.mouse.tapBehavior': 1,
+	'NSGlobalDomain/com.apple.mouse.tapBehavior': 1
+}
+settings.each do |setting, value|
+	domain, key = setting.to_s.split("/")
+	mac_defaults 'Enable Trackpad tab to click' do
+	  domain  domain
+	  key key
+	  user user
+	  value value
+	  notifies :run, 'execute[killall SystemUIServer]'
+	end
+end
