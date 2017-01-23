@@ -18,3 +18,6 @@ cask "docker-toolbox"
 
 #Skitch
 cask "skitch"
+
+#Viscosity
+cask "viscosity"
