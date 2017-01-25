@@ -41,3 +41,7 @@ end
 
 # Vagrant
 cask "vagrant"
+
+# AWS
+brew "awscli"
+cask "aws-vault"
